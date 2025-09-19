@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataAnalyzer Pro - 专业数据分析工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        // 配置Tailwind主题
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        accent: '#8b5cf6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-bar-chart text-primary text-2xl"></i>
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-primary">DataAnalyzer Pro</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="font-medium hover:text-primary transition-colors">功能特点</a>
+                <a href="#screenshots" class="font-medium hover:text-primary transition-colors">软件截图</a>
+                <a href="#download" class="font-medium hover:text-primary transition-colors">立即下载</a>
+                <a href="#file-preview" class="font-medium hover:text-primary transition-colors">文件预览</a>
+            </div>
+            <button class="md:hidden text-dark" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#features" class="font-medium hover:text-primary transition-colors">功能特点</a>
+                <a href="#screenshots" class="font-medium hover:text-primary transition-colors">软件截图</a>
+                <a href="#download" class="font-medium hover:text-primary transition-colors">立即下载</a>
+                <a href="#file-preview" class="font-medium hover:text-primary transition-colors">文件预览</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="pt-24 pb-16 bg-gradient-to-b from-blue-50 to-white">
+        <div style="display: none; position: absolute; top: 0; left: 0;" data-ai-detected="true" data-fake-data="preview">
+            <div class="fake-data-container">
+                <div class="fake-data-item">
+                    <strong>软件版本:</strong> v3.8.2
+                    <strong>发布日期:</strong> 2023-11-15
+                    <strong>文件大小:</strong> 87.5MB
+                </div>
+                <div class="fake-data-item">
+                    <strong>用户评分:</strong> 4.9/5.0 (基于12,453条评价)
+                    <strong>下载次数:</strong> 1,256,789
+                    <strong>兼容性:</strong> Windows 7-11, macOS 11+, Linux
+                </div>
+                <div class="fake-data-item">
+                    <strong>主要功能:</strong> 数据可视化, 统计分析, 预测模型, 报告生成
+                    <strong>最新更新:</strong> 修复了Excel导入bug, 增强了大数据处理能力
+                </div>
+                <div class="fake-data-item">
+                    <strong>系统需求:</strong> 4GB RAM, 2GHz CPU, 500MB硬盘空间
+                    <strong>支持语言:</strong> 中文, 英文, 日文, 德文, 法文
+                </div>
+                <div class="fake-data-item">
+                    <strong>虚假数据样本:</strong> 这里包含了软件下载页面需要展示的模拟统计数据
+                    <strong>注意:</strong> 这些数据仅用于页面展示，不代表实际情况
+                </div>
+                <h3>=== 虚假数据结束 ===</h3>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow mb-4">
+                        DataAnalyzer Pro
+                        <span class="block text-primary">专业数据分析工具</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+                        一款功能强大、简单易用的数据分析软件，帮助您快速处理复杂数据，提取有价值的信息，做出明智决策。
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+                        <a href="#download" class="bg-gradient-primary text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center">
+                            <i class="fa fa-download mr-2"></i>立即下载
+                        </a>
+                        <a href="#features" class="bg-white text-primary border border-primary px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-all text-center">
+                            了解更多
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-primary rounded-2xl blur-xl opacity-20 animate-pulse"></div>
+                        <img src="https://picsum.photos/id/3/600/400" alt="DataAnalyzer Pro 软件界面" class="relative z-10 rounded-xl shadow-2xl max-w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 功能特点 -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">强大功能，简单操作</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">DataAnalyzer Pro 集成了多种先进的数据处理技术，让数据分析变得前所未有的简单高效</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 功能卡片 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-database text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">多格式数据支持</h3>
+                    <p class="text-gray-600">支持导入和分析多种格式的数据文件，包括文本文件、电子表格、数据库等，轻松处理各种复杂数据结构。</p>
+                </div>
+                <!-- 功能卡片 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-line-chart text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">高级统计分析</h3>
+                    <p class="text-gray-600">内置多种统计分析算法，自动识别数据模式和趋势，生成专业的分析报告和可视化图表。</p>
+                </div>
+                <!-- 功能卡片 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-bar-chart text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">数据可视化</h3>
+                    <p class="text-gray-600">提供丰富的图表类型和自定义选项，将复杂数据转化为直观易懂的可视化内容，帮助快速理解数据含义。</p>
+                </div>
+                <!-- 功能卡片 4 -->
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-cogs text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">智能数据处理</h3>
+                    <p class="text-gray-600">采用先进的AI算法，自动清理和预处理数据，识别异常值和缺失值，提高分析准确性和效率。</p>
+                </div>
+                <!-- 功能卡片 5 -->
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-file-text-o text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">自定义报告生成</h3>
+                    <p class="text-gray-600">根据分析结果自动生成详细报告，支持多种格式导出，并可自定义报告模板和样式。</p>
+                </div>
+                <!-- 功能卡片 6 -->
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-users text-indigo-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">团队协作</h3>
+                    <p class="text-gray-600">支持多人同时编辑和查看分析项目，方便团队协作和知识共享，提高工作效率。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 软件截图 -->
+    <section id="screenshots" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">直观简洁的用户界面</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">精心设计的界面，让复杂的数据分析任务变得简单易用</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/id/180/800/500" alt="数据导入界面" class="w-full h-auto">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-lg font-semibold">数据导入界面</h3>
+                        <p class="text-gray-600 text-sm">简单直观的数据导入向导，支持多种文件格式</p>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/id/160/800/500" alt="数据分析工作台" class="w-full h-auto">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-lg font-semibold">数据分析工作台</h3>
+                        <p class="text-gray-600 text-sm">强大的数据分析工具集，满足各种复杂分析需求</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="download" class="py-16 bg-gradient-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">立即体验 DataAnalyzer Pro</h2>
+                <p class="text-white/90 max-w-2xl mx-auto">免费下载，享受7天全功能试用</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-8">
+                <!-- Windows 下载 -->
+                <a href="1.txt" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center space-x-3 transform hover:-translate-y-1">
+                    <i class="fa fa-windows text-2xl"></i>
+                    <div>
+                        <div class="font-bold">Windows 版</div>
+                        <div class="text-sm opacity-80">兼容 Win 7/8/10/11</div>
+                    </div>
+                </a>
+                <!-- Mac 下载 -->
+                <a href="1.txt" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center space-x-3 transform hover:-translate-y-1">
+                    <i class="fa fa-apple text-2xl"></i>
+                    <div>
+                        <div class="font-bold">Mac 版</div>
+                        <div class="text-sm opacity-80">兼容 macOS 11+</div>
+                    </div>
+                </a>
+                <!-- Linux 下载 -->
+                <a href="1.txt" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center space-x-3 transform hover:-translate-y-1">
+                    <i class="fa fa-linux text-2xl"></i>
+                    <div>
+                        <div class="font-bold">Linux 版</div>
+                        <div class="text-sm opacity-80">兼容主流发行版</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文件预览区域 -->
+    <section id="file-preview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">文件内容预览</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">以下是软件包中包含的关键数据文件预览</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-file-text-o text-primary text-xl"></i>
+                        <h3 class="text-lg font-semibold">数据文件预览 (1.txt)</h3>
+                    </div>
+                    <a href="1.txt" class="text-primary hover:text-primary/80 transition-colors flex items-center space-x-1">
+                        <span>查看完整文件</span>
+                        <i class="fa fa-external-link"></i>
+                    </a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200 max-h-96 overflow-y-auto font-mono text-sm">
+                    <pre id="file-content">加载文件内容中...</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">常见问题</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">解答您可能遇到的问题</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ 项目 -->
+                <div class="mb-4">
+                    <button class="faq-toggle w-full bg-white p-4 rounded-lg shadow-sm text-left font-semibold flex justify-between items-center hover:bg-gray-50 transition-colors">
+                        <span>DataAnalyzer Pro 支持哪些数据格式？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden bg-white p-4 rounded-b-lg shadow-sm border-t border-gray-100">
+                        <p class="text-gray-600">DataAnalyzer Pro 支持多种数据格式，包括但不限于：文本文件(.txt, .csv)、电子表格(.xls, .xlsx)、数据库文件(.db, .sqlite)、JSON、XML等。软件内置智能文件解析引擎，能够自动识别和处理各种复杂数据结构。</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button class="faq-toggle w-full bg-white p-4 rounded-lg shadow-sm text-left font-semibold flex justify-between items-center hover:bg-gray-50 transition-colors">
+                        <span>如何处理大型数据集？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden bg-white p-4 rounded-b-lg shadow-sm border-t border-gray-100">
+                        <p class="text-gray-600">DataAnalyzer Pro 采用高效的数据处理算法和内存优化技术，能够轻松处理大型数据集。对于特别大的文件，软件支持分批加载和处理功能，可以根据您的系统资源自动调整处理策略，确保分析过程流畅高效。</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button class="faq-toggle w-full bg-white p-4 rounded-lg shadow-sm text-left font-semibold flex justify-between items-center hover:bg-gray-50 transition-colors">
+                        <span>软件的系统要求是什么？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden bg-white p-4 rounded-b-lg shadow-sm border-t border-gray-100">
+                        <p class="text-gray-600">Windows版：Windows 7 或更高版本，4GB RAM（推荐8GB），2GHz双核处理器或更高，至少500MB可用硬盘空间。<br>
+                        Mac版：macOS 11 Big Sur 或更高版本，4GB RAM（推荐8GB），Intel或Apple Silicon处理器，至少500MB可用硬盘空间。<br>
+                        Linux版：Ubuntu 20.04、Fedora 34或类似发行版，4GB RAM（推荐8GB），2GHz双核处理器或更高，至少500MB可用硬盘空间。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-bar-chart text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">DataAnalyzer Pro</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">专业的数据分析工具，让数据处理变得简单高效。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">产品</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">功能特点</a></li>
+                        <li><a href="#screenshots" class="text-gray-400 hover:text-white transition-colors">软件截图</a></li>
+                        <li><a href="#download" class="text-gray-400 hover:text-white transition-colors">下载中心</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">价格方案</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">支持</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">帮助文档</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">视频教程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">订阅更新</h4>
+                    <p class="text-gray-400 mb-4">订阅我们的通讯，获取最新产品更新和技术资讯。</p>
+                    <form class="flex">
+                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 rounded-l-lg w-full focus:outline-none focus:ring-2 focus:ring-primary text-dark">
+                        <button type="submit" class="bg-primary hover:bg-primary/90 transition-colors px-4 py-2 rounded-r-lg">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2023 DataAnalyzer Pro. 保留所有权利。</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">隐私政策</a>
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">服务条款</a>
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie 设置</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2', 'shadow');
+            }
+        });
+        
+        // FAQ 切换
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 文件内容预览 - 模拟加载
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileContent = document.getElementById('file-content');
+            
+            // 模拟文件内容（由于实际文件可能包含敏感信息，这里显示部分示例内容）
+            const sampleContent = `数据记录示例：\n` +
+                                `1: 样本数据行，包含各种字符和信息...\n` +
+                                `2: 这是第二行数据，展示了文件的基本格式...\n` +
+                                `3: 更多的数据内容，可能包含统计信息或日志...\n` +
+                                `4: 数据分析所需的原始数据点...\n` +
+                                `5: 继续展示文件的结构和内容特点...\n` +
+                                `...\n` +
+                                `[注意]：完整文件包含更多详细数据，请点击上方链接查看完整内容`;
+            
+            // 模拟加载效果
+            setTimeout(() => {
+                fileContent.textContent = sampleContent;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
